@@ -1,0 +1,59 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="content">
+		<f:metadata>
+			<o:viewParam name="aluguel" value="#{aluguelController.aluguel}" />
+		</f:metadata>
+
+		<h1 class="aw-page-title">Cadastrar Aluguel</h1>
+
+		<h:form id="frmCadastro">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Salvar" id="botaoSalvar" styleClass="btn btn-success" icon="fa fa-save"
+						action="#{aluguelController.salvar()}" update="frmCadastro" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa" outcome="/Views/Aluguel/PesquisaAluguel.xhtml" styleClass="btn btn-info"
+						icon="fa fa-search" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="2" id="painel" style="width: 100%" columnClasses="rotulo, campo">
+
+				<p:outputLabel value="Veiculo" for="veiculo" />
+				<p:selectOneMenu id="veiculo" value="#{aluguelController.aluguel.veiculo}" required="true">
+					<f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
+					<f:selectItems value="#{aluguelController.veiculos}" var="v" itemLabel="#{v.placa}" itemValue="#{v}" />
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="Cliente" for="cliente" />
+				<p:selectOneMenu id="cliente" value="#{aluguelController.aluguel.cliente}" required="true">
+					<f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
+					<f:selectItems value="#{aluguelController.clientes}" var="c" itemLabel="#{c.nome}" itemValue="#{c}" />
+				</p:selectOneMenu>
+				
+				<p:outputLabel for="datar" value="Data de Retirada" />
+       		    <p:calendar id="datar" value="#{aluguelController.aluguel.dataRetirada}" />
+				
+				<p:outputLabel for="datad" value="Data de Devolução" />
+       		    <p:calendar id="datad" value="#{aluguelController.aluguel.dataDevolucao}" />
+       		    
+       		    <p:outputLabel value="Tipo de Franquia" for="franquia"/>
+       		    <p:inputText id="franquia" value="#{aluguelController.aluguel.tipoFranquia}"/>
+       		    
+       		    <p:outputLabel value="CNH" for="cnh"/>
+       		    <p:inputText id="cnh" value="#{aluguelController.aluguel.nroCnh}"/>
+       		    
+       		    <p:outputLabel for="datav" value="Data de Vencimento CNF" />
+       		    <p:calendar id="datav" value="#{aluguelController.aluguel.dataVencimentoCnf}" />
+
+
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

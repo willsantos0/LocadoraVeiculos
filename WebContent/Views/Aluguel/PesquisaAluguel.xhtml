@@ -1,0 +1,101 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h1 class="aw-page-title">Pesquisa de Aluguéis</h1>
+
+		<h:form id="frmPesquisa">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Novo" id="botaoNovo" styleClass="btn btn-primary" icon="fa fa-plus"
+						action="/Views/Aluguel/CadastroAluguel.xhtml" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:dataTable id="alugueisTable" value="#{aluguelController.alugueis}" var="aluguel" style="margin-top: 20px; "
+				emptyMessage="Nenhum aluguel encontrado." rows="10" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom" resizableColumns="true" liveResize="true" editable="true">
+								
+				<p:ajax event="rowEdit" listener="#{aluguelController.onRowEdit}" update=":frmPesquisa:messages" />
+      			
+				<p:column headerText="Placa Veiculo" width="41" filterBy="#{aluguel.veiculo.placa}" filterMatchMode="contains">
+					<h:outputText value="#{aluguel.veiculo.placa}" />
+				</p:column>
+				<p:column headerText="Cliente" filterBy="#{aluguel.cliente.nome}" filterMatchMode="contains">
+					<h:outputText value="#{aluguel.cliente.nome}" />
+				</p:column>
+				<p:column headerText="Data Retirada" filterBy="#{aluguel.dataRetirada}" filterMatchMode="contains">
+					<p:cellEditor>
+               			<f:facet name="output">
+               				<h:outputText value="#{aluguel.dataRetirada}">
+								<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00" />
+							</h:outputText>
+						</f:facet>
+               			<f:facet name="input">
+               				<p:calendar value="#{aluguel.dataRetirada}" />
+               			</f:facet>
+          			 </p:cellEditor>
+				</p:column>
+				<p:column headerText="Data de Devolução.">
+					<p:cellEditor>
+               			<f:facet name="output">
+               				<h:outputText value="#{aluguel.dataDevolucao}">
+								<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00" />
+							</h:outputText>
+						</f:facet>
+               			<f:facet name="input">
+               				<p:calendar value="#{aluguel.dataDevolucao}" />
+               			</f:facet>
+          			 </p:cellEditor>
+				</p:column>
+				<p:column headerText="Tipo Franquia">
+					<p:cellEditor>
+               			<f:facet name="output"><h:outputText value="#{aluguel.tipoFranquia}"/></f:facet>
+               			<f:facet name="input"><p:inputText value="#{aluguel.tipoFranquia}" style="width:100%"/></f:facet>
+          			 </p:cellEditor>
+				</p:column>
+				<p:column headerText="Nro. CNH">
+					<p:cellEditor>
+               			<f:facet name="output"><h:outputText value="#{aluguel.nroCnh}"/></f:facet>
+               			<f:facet name="input"><p:inputText value="#{aluguel.nroCnh}" style="width:100%"/></f:facet>
+          			 </p:cellEditor>
+				</p:column>
+				<p:column headerText="Data de Venc. CNF">
+					<p:cellEditor>
+               			<f:facet name="output">
+               				<h:outputText value="#{aluguel.dataVencimentoCnf}">
+								<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00" />
+							</h:outputText>
+						</f:facet>
+               			<f:facet name="input">
+               				<p:calendar value="#{aluguel.dataVencimentoCnf}" />
+               			</f:facet>
+          			 </p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="Editar" >
+					<p:rowEditor />
+				</p:column>
+				<p:column style=" text-align: center" headerText="Excluir">
+					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show()"
+						process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
+						<f:setPropertyActionListener target="#{aluguelController.aluguelSelecionado}" value="#{aluguel}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+			<p:confirmDialog id="confirmacaoExclusaoDialog" widgetVar="confirmacaoExclusao"
+				message="Tem certeza que deseja excluir o aluguel do cliente #{aluguelController.aluguelSelecionado.cliente.nome}?"
+				header="Exclusão de Aluguel" severity="alert">
+				<p:button value="Não" onclick="PF('confirmacaoExclusao').hide(); return false;" />
+				<p:commandButton value="Sim" update=":frmPesquisa:alugueisTable" onclick="PF('confirmacaoExclusao').hide()"
+					action="#{aluguelController.excluir()}" />
+			</p:confirmDialog>
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>

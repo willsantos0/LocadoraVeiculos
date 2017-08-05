@@ -1,0 +1,66 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="content">
+		
+		<h1 class="aw-page-title"><b>Relatórios</b></h1>
+		
+		<h:form id="frmPesquisa">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+			
+			<h1 class="aw-page-title"><b>Relatório Mensal</b></h1>
+			
+			<p:outputLabel value="Digite o Mês e Ano:  " style="margin-left:40px"></p:outputLabel>
+				<p:inputMask id="mes" mask="9?9" value="#{aluguelController.mes}" size="4">
+					<p:ajax update="mes"></p:ajax>
+				</p:inputMask>
+				<p:inputMask id="ano" mask="9999" value="#{aluguelController.ano}"  size="4">
+					<p:ajax update="ano"></p:ajax>
+				</p:inputMask>
+				<p:commandButton value="Pesquisar" id="pesquisar" styleClass="btn btn-info" icon="fa fa-search"
+					action="#{aluguelController.createPieModel1()}" oncomplete="PF('mostraRelMes').show()" process="@this"
+					update=":frmPesquisa:relatorioMes" style="margin-left: 10px"/>
+			
+			<br />
+			
+			<h1 class="aw-page-title"><b>Relatório por Veículos</b></h1>
+			<p:outputLabel value="Digite o Mês e Ano:  " style="margin-left:40px"></p:outputLabel>
+				<p:inputMask id="mes2" mask="9?9" value="#{aluguelController.mes}" size="4">
+					<p:ajax update="mes2"></p:ajax>
+				</p:inputMask>
+				<p:inputMask id="ano2" mask="9999" value="#{aluguelController.ano}"  size="4">
+					<p:ajax update="ano2"></p:ajax>
+				</p:inputMask>
+				<p:commandButton value="Pesquisar" id="pesquisarV" styleClass="btn btn-info" icon="fa fa-search"
+					action="#{aluguelController.createPieModel2()}" oncomplete="PF('mostraRelVeiculo').show()" process="@this"
+					update=":frmPesquisa:relatorioVeiculo" style="margin-left: 10px"/>
+					
+			<br />
+			<h1 class="aw-page-title"><b>Relatório por Media Anual</b></h1>
+			<p:outputLabel value="Digite o Ano:  " style="margin-left:40px"></p:outputLabel>
+				<p:inputMask id="ano3" mask="9999" value="#{aluguelController.ano}"  size="4">
+					<p:ajax update="ano3"></p:ajax>
+				</p:inputMask>
+				<p:commandButton value="Pesquisar" id="pesquisarM" styleClass="btn btn-info" icon="fa fa-search"
+					action="#{aluguelController.createPieModel3()}" oncomplete="PF('mostraRelMedia').show()" process="@this"
+					update=":frmPesquisa:relatorioMedia" style="margin-left: 10px"/>
+			
+			
+			<p:dialog id="relatorioMes" header="Relatório Mensal" widgetVar="mostraRelMes" modal="true" >
+				<p:panelGrid columns="2" style="margin-top: 20px">
+					<p:chart id="pie2" type="pie" model="#{aluguelController.pieModel1}" style="width:400px;height:300px" rendered="#{!emptyChart}"/>
+				</p:panelGrid>
+			</p:dialog>
+			<p:dialog id="relatorioVeiculo" header="Veiculo mais alugado" widgetVar="mostraRelVeiculo" modal="true">
+				<p:chart type="pie" model="#{aluguelController.pieModel2}" style="width:400px;height:300px" />
+			</p:dialog>
+			
+			<p:dialog id="relatorioMedia" header="Relatório de Media Anual" widgetVar="mostraRelMedia" modal="true">
+				<p:chart type="bar" model="#{aluguelController.barModel}" style="width:800px;height:300px" />
+			</p:dialog>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

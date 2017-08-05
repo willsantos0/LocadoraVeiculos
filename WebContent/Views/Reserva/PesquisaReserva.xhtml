@@ -1,0 +1,99 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h1 class="aw-page-title">Pesquisa de Reservas</h1>
+
+		<h:form id="frmPesquisa">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Novo" id="botaoNovo" styleClass="btn btn-primary" icon="fa fa-plus"
+						action="/Views/Reserva/CadastroReserva.xhtml" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:dataTable id="reservasTable" value="#{reservaController.reservas}" var="reserva" style="margin-top: 20px; "
+				emptyMessage="Nenhum reserva encontrado." rows="20" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom" resizableColumns="true" liveResize="true">
+				
+				<p:column headerText="Id" filterBy="#{reserva.codR}" filterMatchMode="contains">
+					<h:outputText value="#{reserva.codR}" />
+				</p:column>
+				<p:column headerText="Nome" filterBy="#{reserva.cliente.nome}" filterMatchMode="contains">
+					<h:outputText value="#{reserva.cliente.nome}" />
+				</p:column>
+				<p:column headerText="Previsão de Retirada" filterBy="#{reserva.dataPrevistaRetirada}" filterMatchMode="contains">
+					<h:outputText value="#{reserva.dataPrevistaRetirada}">
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Local" filterBy="#{reserva.local}" filterMatchMode="contains">
+					<h:outputText value="#{reserva.local}" />
+				</p:column>
+				
+				<p:column headerText="Tipo Veículo" style="width: 100px; text-align: center">
+					<p:commandButton icon="ui-icon-extlink" title="Tipo Veiculo" action="#{reservaController.buscarTipoVeiculo(reserva.tipoVeiculo.codTv)}"
+						process="@this" oncomplete="PF('mostraTipoVeiculo').show()" update=":frmPesquisa:mostraTipoVeiculoDialog">
+						<f:setPropertyActionListener target="#{reservaController.reservaSelecionado}" value="#{veiculo}" />
+					</p:commandButton>
+				</p:column>
+
+				<p:column style="width: 100px; text-align: center">
+					<p:button outcome="CadastroReserva" icon="ui-icon-pencil" title="Editar">
+						<f:param name="reserva" value="#{reserva.codR}" />
+					</p:button>
+					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show()"
+						process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
+						<f:setPropertyActionListener target="#{reservaController.reservaSelecionado}" value="#{reserva}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+			<p:confirmDialog id="confirmacaoExclusaoDialog" widgetVar="confirmacaoExclusao"
+				message="Tem certeza que deseja excluir a Reserva do cliente #{reservaController.reservaSelecionado.cliente.nome}?"
+				header="Exclusão de Reserva" severity="alert">
+				<p:button value="Não" onclick="PF('confirmacaoExclusao').hide(); return false;" />
+				<p:commandButton value="Sim" update=":frmPesquisa:reservasTable" onclick="PF('confirmacaoExclusao').hide()"
+					action="#{reservaController.excluir()}" />
+			</p:confirmDialog>
+			
+			
+			<p:dialog id="mostraTipoVeiculoDialog" header="Tipo Veiculo" widgetVar="mostraTipoVeiculo" modal="true">
+
+				<p:panelGrid columns="2" id="painel" style="width: 100%" columnClasses="rotulo, campo">
+
+					<p:outputLabel value="Tamanho" />
+					<p:inputText readonly="true" value="#{reservaController.reservaSelecionado.tipoVeiculo.tamanho}" />
+
+					<p:outputLabel value="Numero de Passageiros" />
+					<p:inputText readonly="true" value="#{reservaController.reservaSelecionado.tipoVeiculo.nroPassageiros}" />
+					
+					<p:outputLabel value="Numero de Portas" />
+					<p:inputText readonly="true" value="#{reservaController.reservaSelecionado.tipoVeiculo.nroPortas}" />
+					
+					<p:outputLabel value="Valor Diário de Locação"  />
+					<p:inputText readonly="true" value="#{reservaController.reservaSelecionado.tipoVeiculo.valorDiarioLocacao}" />
+					
+					<p:outputLabel value="Valor Km Rodado"  />
+					<p:inputText readonly="true" value="#{reservaController.reservaSelecionado.tipoVeiculo.valorKmRodado}" />
+					
+					<p:outputLabel value="Valor Franquia Normal"  />
+					<p:inputText readonly="true" value="#{reservaController.reservaSelecionado.tipoVeiculo.valorFranquiaNormal}" />
+					
+					<p:outputLabel value="Valor Franquia Reduzida"  />
+					<p:inputText readonly="true" value="#{reservaController.reservaSelecionado.tipoVeiculo.valorFranquiaReduzida}" />
+					
+					<p:outputLabel value="Ar Condicionado" />
+					<p:inputText readonly="true" value="#{reservaController.reservaSelecionado.tipoVeiculo.arCondicionado}" />
+					
+					
+
+				</p:panelGrid>
+			</p:dialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

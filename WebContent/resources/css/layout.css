@@ -1,0 +1,294 @@
+/* TOPBAR */
+.aw-topbar {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	min-height: 50px;
+	z-index: 999;
+	
+	background-color: #2a9896;
+}
+
+
+.aw-topbar > a > img {
+	margin-top: 4px;
+	margin-left: 10px;
+	float:left;
+}
+
+/* SIDEBAR */
+.aw-sidebar {
+	position: fixed;
+	top: 50px;
+	bottom: 0;
+	left: 0;
+	width: 210px;
+	margin-left: -211px;
+	z-index: 9998;
+	transition: margin-left 0.5s;
+	overflow-y: auto;
+	
+	background-color: #f6f6f6;
+	border-right: 1px solid #eaeaea;
+}
+
+.aw-sidebar .img-user{
+	float:left;
+	margin:7px 5px 5px 15px;
+} 
+
+
+.aw-sidebar .desc-user{
+	float:left;
+	margin:5px 0;
+	width:155px;
+	height:35px;
+	overflow:hidden;
+}
+.aw-sidebar .desc-user p{
+	margin:2px;
+	padding:0;
+}
+.aw-sidebar .desc-user p.user{
+	font-weight: bold;
+	font-size: 14px;
+	color: #2a9896;
+}
+
+.aw-sidebar .desc-user p.email{
+	font-size: 8px;
+	color: rgb(38, 38, 38);
+}
+
+
+.aw-sidebar.is-toggled {
+	margin-left: 0px;
+}
+
+@media (min-width: 960px) {
+	.aw-sidebar {
+		margin-left: 0px;
+	}
+	
+	.aw-sidebar.is-toggled {
+		margin-left: -211px;
+	}
+}
+
+/* CONTENT */
+.aw-content {
+	padding: 0 15px;
+	margin-top: 50px;
+	transition: margin-left 0.5s;
+}
+
+@media (min-width: 960px) {
+	.aw-content {
+		margin-left: 210px;
+	}
+	
+	.aw-content.is-toggled {
+		margin-left: 0;
+	}
+}
+
+.ui-state-default.ui-button.ui-state-active, .ui-widget-content .ui-state-default.ui-button.ui-state-active, .ui-widget-header .ui-state-default.ui-button.ui-state-active {
+    background-color: #42aaa8;
+    background-image: none;
+}
+
+.ui-toolbar.ui-widget-header .ui-button{
+	margin-right:3px;
+}
+
+
+.btn-dash span.fa{
+	font-size:45px;
+	float:left;
+	margin-right:10px;
+}
+.btn-dash .desc a{
+	text-decoration: none;
+}
+.btn-dash h3,.btn-dash p{
+	margin:2px;
+}
+.btn-dash p{
+	font-size:12px;
+}
+
+.ico-success{color: #5cb85c}
+.ico-danger{color: #d9534f}
+.ico-primary{color: #286090}
+.ico-warning{color: #f0ad4e}
+.ico-info{color: #5bc0de}
+
+/* BOTOES COLORIDOS BOOTSTRAP
+ *
+ * Classes: btn-primary btn-success btn-info btn-warning btn-danger
+ *
+ */
+ 
+.btn-primary
+{
+	color: #fff !important; 
+	background: #337ab7 !important;
+	border: 1px solid #2e6da4 !important;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25) !important;
+	
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+	moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+	webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.btn-primary.ui-state-hover,.btn-primary.ui-state-active
+{
+	color: #fff !important;
+	background: #286090 !important;
+	border-color: #204d74 !important;
+	text-decoration: none !important;
+}
+
+.btn-primary.ui-state-focus
+{
+	color: #fff !important;
+	background: #286090 !important;
+	border-color: #122b40 !important;
+  
+	outline: 5px auto -webkit-focus-ring-color;
+	outline: thin dotted #333;
+	outline-offset: -2px;
+}
+
+
+.btn-success
+{
+	color: #fff !important;
+	background: #5cb85c !important;
+	border: 1px solid #4cae4c !important;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25) !important;
+	
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+	moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+	webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.btn-success.ui-state-hover,.btn-success.ui-state-active
+{
+	color: #fff !important;
+	background: #449d44 !important;
+	border-color: #398439 !important;
+	text-decoration: none !important;
+}
+
+.btn-success.ui-state-focus
+{
+	color: #fff !important;
+	background: #449d44 !important;
+	border-color: #255625 !important;
+  
+	outline: 5px auto -webkit-focus-ring-color;
+	outline: thin dotted #333;
+	outline-offset: -2px;
+}
+
+
+.btn-info
+{
+	color: #fff !important;
+	background: #5bc0de !important;
+	border: 1px solid #46b8da !important;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25) !important;
+	
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+	moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+	webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.btn-info.ui-state-hover,.btn-info.ui-state-active
+{
+	color: #fff !important;
+	background: #31b0d5 !important;
+	border-color: #269abc !important;
+	text-decoration: none !important;
+}
+
+.btn-info.ui-state-focus
+{
+	color: #fff !important;
+	background: #31b0d5 !important;
+	border-color: #1b6d85 !important;
+  
+	outline: 5px auto -webkit-focus-ring-color;
+	outline: thin dotted #333;
+	outline-offset: -2px;
+}
+
+
+.btn-warning
+{
+	color: #fff !important;
+	background: #f0ad4e !important;
+	border: 1px solid #eea236 !important;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25) !important;
+	
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+	moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+	webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.btn-warning.ui-state-hover,.btn-warning.ui-state-active
+{
+	color: #fff !important;
+	background: #ec971f !important;
+	border-color: #d58512 !important;
+	text-decoration: none !important;
+}
+
+.btn-warning.ui-state-focus
+{
+	color: #fff !important;
+	background: #ec971f !important;
+	border-color: #985f0d !important;
+  
+	outline: 5px auto -webkit-focus-ring-color;
+	outline: thin dotted #333;
+	outline-offset: -2px;
+}
+
+
+.btn-danger
+{
+	color: #fff !important;
+	background: #d9534f !important;
+	border: 1px solid #d43f3a !important;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25) !important;
+	
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+	moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+	webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.btn-danger.ui-state-hover,.btn-danger.ui-state-active
+{
+	color: #fff !important;
+	background: #c9302c !important;
+	border-color: #ac2925 !important;
+	text-decoration: none !important;
+}
+
+.btn-danger.ui-state-focus
+{
+	color: #fff !important;
+	background: #c9302c !important;
+	border-color: #761c19 !important;
+  
+	outline: 5px auto -webkit-focus-ring-color;
+	outline: thin dotted #333;
+	outline-offset: -2px;
+}
+
+.rotulo{
+	width: 30%;
+}

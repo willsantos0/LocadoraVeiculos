@@ -1,0 +1,185 @@
+/*
+ * Base structure
+ */
+ 
+ body{ background:url(../img/bg.png.xhtml) repeat}
+#site{ background:url(../img/bg_ef.png.xhtml) 50% 72% repeat-x}
+ 
+/*
+ * Global add-ons
+ */
+.alert p{ text-align:justify}
+
+.logo{ text-align:center}
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  /*display: none;*/
+  background-color: #3d3d3d;
+}
+.sidebar .navbar-toggle {
+  border-color: #333;
+}
+.sidebar .navbar-toggle:hover,
+.sidebar .navbar-toggle:focus {
+  background-color: #333;
+}
+.sidebar .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+
+
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed; 
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 15px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #3d3d3d;
+    border-right: 1px solid #eee;
+	width:250px;
+  }
+  .sidebar .navbar-collapse {padding:0}
+}
+.sidebar img{ margin:5px 0}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -15px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: -15px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+  color:#cecece;;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a > span,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #ffffff;
+  background-color: #2e6593;
+}
+.nav-sidebar > .active span.selected{
+  background-image: url("../img/sidebar-menu-arrow.png.xhtml");
+  display: block;
+  width: 8px;
+  height: 25px;
+  float: right;
+  position: absolute;
+  right: 0px;
+  top: 8px;
+}
+
+.nav-sidebar > li > a:hover{
+  color: #ffffff;
+  background-color: #303030;
+}
+.nav-sidebar > li > a > span{ color:#888888; margin-right:8px;}
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 20px;
+    padding-left: 270px;
+	width:100%;
+  }
+  
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.form-group label{ font-weight:normal;margin-bottom: 2px;}
+
+
+
+.form-signin {
+  max-width: 400px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-signin .panel{ 
+	border:8px solid #417e7d;
+-webkit-box-shadow: 0px 0px 13px -1px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 13px -1px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 13px -1px rgba(0,0,0,0.75);
+}
+
+.acoes{ margin-bottom:20px;}
+
+.modal-dialog{ width:400px;}
+
+.ml-10{ margin-left:10px;}
+.ml-20{ margin-left:20px;}
+.ml-30{ margin-left:30px;}
+.ml-40{ margin-left:40px;}
+.ml-50{ margin-left:50px;}
+
+.mr-10{ margin-right:10px;}
+.mr-20{ margin-right:20px;}
+.mr-30{ margin-right:30px;}
+.mr-40{ margin-right:40px;}
+.mr-50{ margin-right:50px;}
+
+.mt-10{ margin-top:10px;}
+.mt-20{ margin-top:20px;}
+.mt-30{ margin-top:30px;}
+.mt-40{ margin-top:40px;}
+.mt-50{ margin-top:50px;}
+
+.mb-10{ margin-bottom:10px;}
+.mb-20{ margin-bottom:20px;}
+.mb-30{ margin-bottom:30px;}
+.mb-40{ margin-bottom:40px;}
+.mb-50{ margin-bottom:50px;}

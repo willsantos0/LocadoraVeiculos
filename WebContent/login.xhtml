@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Locadora GJW</title>
+
+	<h:outputStylesheet name="login/css/bootstrap.css" />
+	<h:outputStylesheet name="login/css/dashboard.css" />
+
+</h:head>
+<h:body>
+
+	<div id="site">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 text-center mt-50 mb-20">
+					<h:graphicImage name="login/img/logo.png" />
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+
+			<h:form id="frm" prependId="false" styleClass="form-signin">
+				<div class="panel panel-default">
+
+					<div class="panel-heading">
+						<h3>Área Restrita</h3>
+					</div>
+
+					<p:messages id="messages" autoUpdate="true" closable="true" />
+
+					<div class="panel-body">
+
+						<div class="input-group mb-10">
+							<span class="input-group-addon glyphicon glyphicon-user" style="top: 0" id="basic-addon1"></span>
+							<p:inputText placeholder="Usuário" id="username" styleClass="form-control"
+								value="#{loginController.usuario.user}" />
+						</div>
+
+						<div class="input-group top15">
+							<span class="input-group-addon glyphicon glyphicon-lock" style="top: 0" id="basic-addon1"></span> 
+						<p:inputText type="password" styleClass="form-control" placeholder="Senha" id="password" value="#{loginController.usuario.pwd}" />
+						</div>
+
+
+					</div>
+
+					<div class="panel-footer text-right">
+						<p:commandButton action="#{loginController.validateUsernamePassword}" value="Login" styleClass="btn btn-success"></p:commandButton>
+					</div>
+
+				</div>
+
+			</h:form>
+		</div>
+		<!-- /container -->
+
+	</div>
+</h:body>
+</html>
+

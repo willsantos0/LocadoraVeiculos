@@ -1,0 +1,132 @@
+/* BASE */
+body {
+	margin: 0;
+	font-size: 13px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* TABVIEW */
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a {
+	color: #555;
+}
+
+@media (max-width: 640px) {
+	.ui-tabs.ui-tabs-top > .ui-tabs-nav li {
+		width: 100%;
+	}
+}
+
+@media (min-width: 960px) {
+	.ui-fluid .ui-button {
+	    width: auto !important;
+	}
+		.ui-button.ui-button-icon-only{
+		width: 2.4em !important;
+	}
+	
+}
+/* PANELGRID */
+.ui-panelgrid.panelgrid-noborder .ui-grid-responsive {
+	border: none;
+}
+
+@media (max-width: 640px) {
+	.ui-panelgrid.panelgrid-noborder .ui-grid-responsive .ui-grid-row {
+		border: none;
+	}
+}
+
+.ui-toolbar {
+    margin-bottom: 15px;
+}
+
+.ui-toolbar.ui-widget-header {
+    background: #f5f5f5;
+    border: 1px solid #e6e6e6;
+}
+
+.ui-widget-overlay {
+    background: #000000;
+    opacity: 0.3;
+    filter: Alpha(Opacity=30);
+}
+
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
+    opacity: 0.65;
+    filter: Alpha(Opacity=65);
+    background-image: none;
+}
+
+.ui-fieldset-legend {
+    background: none !important;
+    border: 0 !important;
+    padding: 7px !important;
+    font-weight: bold;
+	font-size: 13px;
+	color: #2F5756 !important;
+    box-shadow:inherit !important;
+}
+
+.ui-fieldset{
+	background:#fafafa; margin-bottom:15px;
+}
+
+.ui-outputlabel .ui-outputlabel-rfi {
+    margin-left: 0em !important;
+}
+
+.no-full table{width: auto !important}
+
+.mgt-17{ margin-top:17px}
+.b{ font-weight: bold;}
+.i{ font-style: italic;}
+.s{ text-decoration: underline;}
+
+span.mini{font-size:11px;}
+
+.itensnf tr td,.itensnf tr th {font-size: 12px !important;}
+
+.block{display: block;}
+
+.up{ display:none !important}
+
+.ui-sticky .up{ display: initial !important}
+
+.ui-datatable table {
+	table-layout: auto !important;
+	font-size: 12px !important;
+}
+
+/* Teste Scroll data Table*/
+.ui-datatable-hor-scroll .ui-datatable-tablewrapper, .scrolling-div .ui-datatable-tablewrapper
+	{
+	overflow: auto !important;
+	width: 100% !important;
+	padding-bottom: 5px !important;
+}
+
+.ui-carousel .ui-carousel-header .ui-carousel-header-title {
+	width: 60% !important;
+}
+
+.ui-carousel .ui-carousel-viewport {
+	border: 1px solid #dddddd !important;
+}
+
+.ui-picklist.ui-picklist-responsive .ui-picklist-list {
+	border: 1px solid #dddddd;
+}
+
+.ui-selectmanycheckbox.ui-grid label, .ui-selectoneradio.ui-grid label {
+	display: initial !important;
+}
+
+.ui-selectmanycheckbox .ui-grid-row {
+	margin-bottom: 10px !important;
+}
+
+.rodape {
+	position: fixed;
+	bottom: 5px;
+	line-height: 20px;
+}

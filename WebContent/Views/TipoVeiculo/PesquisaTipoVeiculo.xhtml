@@ -1,0 +1,69 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h1 class="aw-page-title">Pesquisa de Tipo Veiculos</h1>
+
+		<h:form id="frmPesquisa">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Novo" id="botaoNovo" styleClass="btn btn-primary" icon="fa fa-plus"
+						action="/Views/TipoVeiculo/CadastroTipoVeiculo.xhtml" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:dataTable id="tipoVeiculosTable" value="#{tipoVeiculoController.tipoVeiculos}" var="tipoVeiculo" style="margin-top: 20px; "
+				emptyMessage="Nenhum Tipo de Veiculo encontrado." rows="20" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom" resizableColumns="true" liveResize="true">
+
+				<p:column headerText="Tamanho" >
+					<h:outputText value="#{tipoVeiculo.tamanho}" />
+				</p:column>
+				<p:column headerText="Nro Passag.">
+					<h:outputText value="#{tipoVeiculo.nroPassageiros}" />
+				</p:column>
+				<p:column headerText="Nro Portas" >
+					<h:outputText value="#{tipoVeiculo.nroPortas}" />
+				</p:column>
+				<p:column headerText="V. D. Alocação" >
+					<h:outputText value="#{tipoVeiculo.valorDiarioLocacao}"/>
+				</p:column>
+				<p:column headerText="V. Km Rodado" >
+					<h:outputText value="#{tipoVeiculo.valorKmRodado}" />
+				</p:column>
+				<p:column headerText="V.F. Normal">
+					<h:outputText value="#{tipoVeiculo.valorFranquiaNormal}" />
+				</p:column>
+				<p:column headerText="V.F. Reduzida" >
+					<h:outputText value="#{tipoVeiculo.valorFranquiaReduzida}" />
+				</p:column>
+				<p:column headerText="Ar C." >
+					<h:outputText value="#{tipoVeiculo.arCondicionado}" />
+				</p:column>
+
+				<p:column style="width: 100px; text-align: center">
+					<p:button outcome="CadastroTipoVeiculo" icon="ui-icon-pencil" title="Editar">
+						<f:param name="tipoVeiculo" value="#{tipoVeiculo.codTv}" />
+					</p:button>
+					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show()"
+						process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
+						<f:setPropertyActionListener target="#{tipoVeiculoController.tipoVeiculoSelecionado}" value="#{tipoVeiculo}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+			<p:confirmDialog id="confirmacaoExclusaoDialog" widgetVar="confirmacaoExclusao"
+				message="Tem certeza que deseja excluir esse Tipo Veiculo?"
+				header="Exclusão de TipoVeiculo" severity="alert">
+				<p:button value="Não" onclick="PF('confirmacaoExclusao').hide(); return false;" />
+				<p:commandButton value="Sim" update=":frmPesquisa:tipoVeiculosTable" onclick="PF('confirmacaoExclusao').hide()"
+					action="#{tipoVeiculoController.excluir()}" />
+			</p:confirmDialog>
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>

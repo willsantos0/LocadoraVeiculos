@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="titulo">Locadora de Veículos</ui:insert></title>
+	<h:outputStylesheet library="css" name="custom.css" />
+	<h:outputStylesheet library="css" name="layout.css" />
+	<h:outputStylesheet library="css" name="components.css" />
+
+	<h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript target="body" library="scripts" name="app.js" />
+</h:head>
+
+<h:body>
+	<h:form>
+		<header class="aw-topbar"> <p:link outcome="/index.xhtml">
+			<h:graphicImage id="logo" library="imagens" name="logo.png" style="margin: 5px; height: 40px"/>
+		</p:link> <a href="#" class="aw-toggle  js-toggle"><i class="fa  fa-bars"></i></a>
+		
+		 </header>
+
+		<aside class="aw-sidebar  js-sidebar"> 
+		<nav class="aw-menu">
+		<ul>
+			<li class="is-selected"><h:link outcome="/index.xhtml">
+					<i class="fa  fa-fw  fa-home"></i>Início</h:link></li>
+		</ul>
+
+		<p:panelMenu>
+			<p:submenu label="Cadastros">
+				<p:menuitem value="Cliente" outcome="/Views/Cliente/CadastroCliente.xhtml" icon="fa  fa-fw  fa-user-plus" />
+				<p:menuitem value="Tipo Veiculo" outcome="/Views/TipoVeiculo/CadastroTipoVeiculo.xhtml" icon="fa  fa-fw  fa fa-car" />
+				<p:menuitem value="Veiculo" outcome="/Views/Veiculo/CadastroVeiculo.xhtml" icon="fa  fa-fw  fa fa-car" />
+				<p:menuitem value="Aluguel" outcome="/Views/Aluguel/CadastroAluguel.xhtml" icon="fa  fa-fw  fa fa-car" />
+				<p:menuitem value="Reserva" outcome="/Views/Reserva/CadastroReserva.xhtml" icon="fa  fa-fw  fa fa-car" />
+			</p:submenu>
+			<p:submenu label="Pesquisa">
+				<p:menuitem value="Clientes" outcome="/Views/Cliente/PesquisaCliente.xhtml" icon="fa  fa-fw  fa-users" />
+				<p:menuitem value="Tipo Veiculos" outcome="/Views/TipoVeiculo/PesquisaTipoVeiculo.xhtml" icon="fa  fa-fw  fa fa-car" />
+				<p:menuitem value="Veiculos" outcome="/Views/Veiculo/PesquisaVeiculo.xhtml" icon="fa  fa-fw  fa fa-car" />
+				<p:menuitem value="Aluguéis" outcome="/Views/Aluguel/PesquisaAluguel.xhtml" icon="fa  fa-fw  fa fa-car" />
+				<p:menuitem value="Reservas" outcome="/Views/Reserva/PesquisaReserva.xhtml" icon="fa  fa-fw  fa fa-car" />
+			</p:submenu>
+		</p:panelMenu>
+		<ul>
+			<li ><h:link outcome="/Views/Aluguel/RelatorioAluguel.xhtml">
+					<i class="fa fa-bar-chart"></i>Relatórios</h:link>
+			</li>
+			<li>
+				<h:commandLink action="#{loginController.logout}">
+					<i class="fa  fa-fw  fa-power-off"></i> Sair
+				</h:commandLink>
+			</li>
+		</ul>
+		 </nav> </aside>
+
+	</h:form>
+	<section class="aw-content  js-content"> <ui:insert name="content" /> </section>
+
+
+</h:body>
+
+</html>

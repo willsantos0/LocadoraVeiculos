@@ -1,0 +1,101 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h1 class="aw-page-title">Pesquisa de Veiculos</h1>
+
+		<h:form id="frmPesquisa">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Novo" id="botaoNovo" styleClass="btn btn-primary" icon="fa fa-plus"
+						action="/Views/Veiculo/CadastroVeiculo.xhtml" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:dataTable id="veiculosTable" value="#{veiculoController.veiculos}" var="veiculo" style="margin-top: 20px; "
+				emptyMessage="Nenhuma veiculo encontrada." rows="20" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom" resizableColumns="true" liveResize="true">
+
+				<p:column headerText="Placa" width="41" filterBy="#{veiculo.placa}" sortBy="#{veiculo.placa}" filterMatchMode="contains">
+					<h:outputText value="#{veiculo.placa}" />
+				</p:column>
+				<p:column headerText="Cor" filterBy="#{veiculo.cor}" sortBy="#{veiculo.cor}"  filterMatchMode="contains">
+					<h:outputText value="#{veiculo.cor}" />
+				</p:column>
+				<p:column headerText="Nro Chassi" width="35" filterBy="#{veiculo.nroChassi}" sortBy="#{veiculo.nroChassi}"  filterMatchMode="contains">
+					<h:outputText value="#{veiculo.nroChassi}" />
+				</p:column>
+				<p:column headerText="Nro Motor" filterBy="#{veiculo.nroMotor}" sortBy="#{veiculo.nroMotor}" filterMatchMode="contains">
+					<h:outputText value="#{veiculo.nroMotor}" />
+				</p:column>
+				<p:column headerText="Km Atual" filterBy="#{veiculo.kmAtual}" sortBy="#{veiculo.kmAtual}" filterMatchMode="contains">
+					<h:outputText value="#{veiculo.kmAtual}" />
+				</p:column>
+
+				<i class="fa  fa-fw  fa-power-off"></i> Sair
+				
+				<p:column headerText="Tipo Veículo" style="width: 100px; text-align: center">
+					<p:commandButton icon="ui-icon-extlink" title="Tipo Veiculo" action="#{veiculoController.buscarTipoVeiculo(veiculo.tipo.codTv)}"
+						process="@this" oncomplete="PF('mostraTipoVeiculo').show()" update=":frmPesquisa:mostraTipoVeiculoDialog">
+						<f:setPropertyActionListener target="#{veiculoController.veiculoSelecionado}" value="#{veiculo}" />
+					</p:commandButton>
+				</p:column>
+				
+				<p:column style="width: 100px; text-align: center">
+					<p:button outcome="CadastroVeiculo" icon="ui-icon-pencil" title="Editar">
+						<f:param name="veiculo" value="#{veiculo.placa}" />
+					</p:button>
+					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show()"
+						process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
+						<f:setPropertyActionListener target="#{veiculoController.veiculoSelecionado}" value="#{veiculo}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+			<p:confirmDialog id="confirmacaoExclusaoDialog" widgetVar="confirmacaoExclusao"
+				message="Tem certeza que deseja excluir a Veiculo com a placa #{veiculoController.veiculoSelecionado.placa}?"
+				header="Exclusão de Veiculo" severity="alert">
+				<p:button value="Não" onclick="PF('confirmacaoExclusao').hide(); return false;" />
+				<p:commandButton value="Sim" update=":frmPesquisa:veiculosTable" onclick="PF('confirmacaoExclusao').hide()"
+					action="#{veiculoController.excluir()}" />
+			</p:confirmDialog>
+
+			<p:dialog id="mostraTipoVeiculoDialog" header="Tipo Veiculo" widgetVar="mostraTipoVeiculo" modal="true">
+
+				<p:panelGrid columns="2" id="painel" style="width: 100%" columnClasses="rotulo, campo">
+
+					<p:outputLabel value="Tamanho" />
+					<p:inputText readonly="true" value="#{veiculoController.veiculoSelecionado.tipo.tamanho}" />
+
+					<p:outputLabel value="Numero de Passageiros" />
+					<p:inputText readonly="true" value="#{veiculoController.veiculoSelecionado.tipo.nroPassageiros}" />
+					
+					<p:outputLabel value="Numero de Portas" />
+					<p:inputText readonly="true" value="#{veiculoController.veiculoSelecionado.tipo.nroPortas}" />
+					
+					<p:outputLabel value="Valor Diário de Locação"  />
+					<p:inputText readonly="true" value="#{veiculoController.veiculoSelecionado.tipo.valorDiarioLocacao}" />
+					
+					<p:outputLabel value="Valor Km Rodado"  />
+					<p:inputText readonly="true" value="#{veiculoController.veiculoSelecionado.tipo.valorKmRodado}" />
+					
+					<p:outputLabel value="Valor Franquia Normal"  />
+					<p:inputText readonly="true" value="#{veiculoController.veiculoSelecionado.tipo.valorFranquiaNormal}" />
+					
+					<p:outputLabel value="Valor Franquia Reduzida"  />
+					<p:inputText readonly="true" value="#{veiculoController.veiculoSelecionado.tipo.valorFranquiaReduzida}" />
+					
+					<p:outputLabel value="Ar Condicionado" />
+					<p:inputText readonly="true" value="#{veiculoController.veiculoSelecionado.tipo.arCondicionado}" />
+					
+					
+
+				</p:panelGrid>
+			</p:dialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

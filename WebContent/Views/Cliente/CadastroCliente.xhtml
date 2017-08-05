@@ -1,0 +1,63 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="content">
+		<f:metadata>
+			<o:viewParam name="cliente" value="#{clienteController.cliente}" />
+		</f:metadata>
+
+		<h1 class="aw-page-title">Salvar Cliente</h1>
+
+
+
+		<h:form id="frmCadastro">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Salvar" id="botaoSalvar" styleClass="btn btn-success" icon="fa fa-save"
+						action="#{clienteController.salvar()}" update="frmCadastro" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa" outcome="/Views/Cliente/PesquisaCliente.xhtml" styleClass="btn btn-info"
+						icon="fa fa-search" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="2" id="painel" style="width: 100%" columnClasses="rotulo, campo">
+
+				<p:outputLabel value="CPF" for="cpf" />
+				<p:inputMask mask="999-999-999.99" id="cpf" size="11" value="#{clienteController.cliente.cpf}" required="true" />
+
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="20" maxlength="50" value="#{clienteController.cliente.nome}" required="true" />
+
+				<p:outputLabel value="Endereço" for="endereco" />
+				<p:inputText id="endereco" size="20" maxlength="100" value="#{clienteController.cliente.endereco}" required="true" />
+
+				<p:outputLabel value="Data de Nascimento" for="data" />
+				<p:inputMask mask="99/99/9999" id="data" value="#{clienteController.cliente.dataNasc}" required="true"
+					placeholder="dia/mes/ano">
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00" />
+				</p:inputMask>
+
+				<p:outputLabel value="Sexo" for="sexo" />
+				<p:selectOneRadio id="sexo" value="#{clienteController.cliente.sexo}" required="true">
+					<f:selectItem itemLabel="Masculino" itemValue="M" />
+					<f:selectItem itemLabel="Feminino" itemValue="F" />
+				</p:selectOneRadio>
+
+				<p:outputLabel value="Telefone Fixo" for="fixo" />
+				<p:inputMask mask="(99)9999-9999" id="fixo" size="13" value="#{clienteController.cliente.telefoneFixo}"
+					required="true" />
+
+				<p:outputLabel value="Celular" for="celular" />
+				<p:inputMask mask="(99)99999-9999" id="celular" size="14" required="true"
+					value="#{clienteController.cliente.telefoneCelular}" />
+
+
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
